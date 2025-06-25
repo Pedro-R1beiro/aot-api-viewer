@@ -1,0 +1,27 @@
+@import url('https://fonts.cdnfonts.com/css/the-last-shuriken');
+
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer components {
+    .active {
+        @apply bg-red-600 rounded-lg cursor-pointer border-b-5 border-b-red-800
+    }
+
+    .content {
+        @apply bg-zinc-900 min-h-screen pt-[88px] pb-[72px] w-screen flex items-center justify-center
+    }
+}
+
+body {
+    font-family: "The Last Shuriken", sans-serif;
+}
