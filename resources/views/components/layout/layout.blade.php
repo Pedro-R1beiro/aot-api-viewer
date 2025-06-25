@@ -18,6 +18,9 @@
         @yield('content')
     </div>
     @include('components/layout/footer')
+    <script>
+        @yield('script')
+    </script>
 </body>
 
 </html>

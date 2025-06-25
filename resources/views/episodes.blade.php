@@ -2,44 +2,50 @@
 
 @section('content')
     <div class="flex flex-col w-[100%] items-center p-8 gap-10">
-        <div>
-            <div class="relative">
-                <input class="bg-white rounded-lg h-10 w-lg max-lg:w-[calc(60vw)]" type="text" name="search" id="search">
-                <i class="fa-solid fa-magnifying-glass absolute left-1.5 top-[50%] transform translate-y-[-50%]"></i>
-            </div>
-            <div class="mt-[1rem]">
-                <div class="flex flex-col">
-                    <label for="season" class="text-zinc-400">Season</label>
-                    <select class="bg-white p-2 w-fit rounded-lg" name="season" id="season">
-                        <option value="all">All</option>
-                        <option value="S1">Season 1</option>
-                        <option value="S2">Season 2</option>
-                        <option value="S3">Season 3</option>
-                        <option value="S4">Season 4</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        {{-- <div class="flex flex-wrap justify-around gap-3.5 w-[80vw]">
-            @foreach ($episodes['results'] as $episode)
+        @include('components/search-bar')
+        @if (isset($data['results']))
+        <div class="flex flex-wrap justify-around gap-4.5 w-[80vw]">
+            @foreach ($data['results'] as $episode)
                 @php
-                    $cleanUrlImg = Str::before($episode['img'], '/revision');
+                    $cleanUrlImg = isset($episode['img']) ? Str::before($episode['img'], '/revision') : asset('images/image.png');
                 @endphp
 
-                <div class="bg-zinc-950 w-3xs p-5 rounded-lg text-zinc-400 hover:scale-105 relative pb-20 h-auto">
+                <div
+                    class="group bg-zinc-950 w-3xs max-md:w-xs p-5 rounded-lg text-zinc-400 hover:scale-105 relative pb-20 h-auto transition duration-300 ease-in-out">
                     <a class="flex flex-col items-center gap-10" href="#">
-                        <p class="absolute bg-zinc-950 p-3 rounded-lg top-0">{{ $episode['episode'] }}</p>
-                        <img class="w-[100%] rounded-lg" src="{{ $cleanUrlImg }}" alt="">
+                        <p
+                            class="absolute bg-zinc-950 p-3 rounded-b-lg top-0 group-hover:bg-red-600 group-hover:top-[-6px] transition-all duration-500 ease-in-out">
+                            {{ $episode['episode'] }}</p>
+                        <img class="w-[90%] h-40 object-cover group-hover:w-[100%] rounded-lg transition-all duration-300 ease-in-out"
+                            src="{{ $cleanUrlImg }}" alt="">
                         <h1>{{ $episode['name'] }}</h1>
-                        <button class="absolute bottom-[12px] active p-2 hover:scale-105 text-white">Check out more</button>
+                        <button
+                            class="absolute bottom-[12px] active p-2 hover:scale-105 text-white transition duration-300 ease-in-out">Check
+                            out more</button>
                     </a>
                 </div>
             @endforeach
-        </div> --}}
-        <div>
-            <button class="p-10 bg-zinc-700 rounded-lg text-white"><i class="fa-solid fa-chevron-left text-3xl  aspect-square"></i></button>
-            <p></p>
-            <button><i class="fa-solid fa-chevron-right text-3xl"></i></button>
         </div>
+        @else
+            @include('components/no-result')
+        @endif
+        @php
+            $data = $data;
+            $type = 'episodes';
+        @endphp
+        @include('components/btns-prev-next')
     </div>
+@endsection
+
+@section('script')
+    const search = document.getElementById('search');
+    const season = document.getElementById('season');
+
+    const btnSearch = document.getElementById('btnSearch');
+
+    function searchParams() {
+        window.location.href = "{{ url("/episodes") }}?name=" + search.value + "&season=" + season.value;
+    }
+
+    btnSearch.addEventListener('click', searchParams);
 @endsection

@@ -6,7 +6,7 @@
     <ul class="flex gap-10">
         <li class="p-2 hover:scale-110 text-base {{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
         <li class="p-2 hover:scale-110 text-base {{ Route::is('episodes') ? 'active' : '' }}"><a href="{{ route('episodes') }}">Episodes</a></li>
-        <li class="p-2 hover:scale-110 text-base {{ Route::is('titans') ? 'active' : '' }}"><a href="#">Titans</a></li>
-        <li class="p-2 hover:scale-110 text-base {{ Route::is('characters') ? 'active' : '' }}"><a href="#">Characters</a></li>
+        <li class="p-2 hover:scale-110 text-base {{ Route::is('titans') ? 'active' : '' }}"><a href="{{ route('titans') }}">Titans</a></li>
+        <li class="p-2 hover:scale-110 text-base {{ Route::is('characters') ? 'active' : '' }}"><a href="{{ route('characters') }}">Characters</a></li>
     </ul>
 </header>
