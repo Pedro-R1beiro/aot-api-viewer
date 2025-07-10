@@ -16,3 +16,9 @@ Route::get('/episodes', [EpisodesController::class, 'index'])->name('episodes');
 Route::get('/titans', [TitansController::class, 'index'])->name('titans');
 
 Route::get('/characters', [CharactersController::class, 'index'])->name('characters');
+
+Route::get('/card', 
+    function () {
+        return view('card');
+    }
+)->name('card');

@@ -18,7 +18,7 @@
     }
 
     .content {
-        @apply bg-zinc-900 min-h-screen pt-[88px] pb-[72px] w-screen flex items-center justify-center
+        @apply bg-zinc-900 min-h-screen pt-[88px] pb-[72px] w-screen flex justify-center
     }
 }
 
